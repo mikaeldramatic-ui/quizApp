@@ -11,3 +11,4 @@ struct QuizQuestion: Identifiable {
 enum QuizCategory: String {
     case film = "Film"
     case music = "Music"
+}
