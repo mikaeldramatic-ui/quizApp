@@ -64,7 +64,7 @@ struct StartScreen: View {
                     // Buttons section
                     VStack(spacing: 16) {
                         // Start Game button (Primary action)
-                        NavigationLink(destination: GameView()) {
+                        NavigationLink(destination: QuizView()) {
                             Label("Start Game", systemImage: "play.fill")
                                 .font(.title3.bold())
                                 .frame(maxWidth: .infinity)
