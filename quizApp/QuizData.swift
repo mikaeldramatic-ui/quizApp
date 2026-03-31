@@ -38,6 +38,7 @@ let quizQuestions: [QuizQuestion] = [
     QuizQuestion(emojis: "🦅👁️🍒", correctAnswer: "Eagle-Eye Cherry", alternateAnswers: ["Eagle eye cherry"], category: .music),
     QuizQuestion(emojis: "🌑🌈🔺", correctAnswer: "Pink Floyd", alternateAnswers: ["The Dark Side of the Moon", "Dark Side of the Moon"], category: .music),
     QuizQuestion(emojis: "👑👩", correctAnswer: "Queen", alternateAnswers: [], category: .music),
-    QuizQuestion(emojis: "🪲🪲🪲🪲", correctAnswer: "The Beatles", alternateAnswers: ["Beatles"], category: .music)
-
+    QuizQuestion(emojis: "🪲🪲🪲🪲", correctAnswer: "The Beatles", alternateAnswers: ["Beatles"], category: .music),
+    QuizQuestion(emojis: "9️⃣9️⃣🎈🎈", correctAnswer: "99 Luftballons", alternateAnswers: ["99 Luftballonger", "99 Red Balloons", "Ninety Nine Red Balloons"], category: .music)
+    
 ]
