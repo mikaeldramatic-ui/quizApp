@@ -9,7 +9,12 @@ import SwiftUI
 
 struct QuizView: View {
 
-    let questions = QuizData.questions // Eller vad Sara har skrivit för något namn
+    let questions = quizQuestions
+    
+    // Array of quiz-related emojis for background
+    private let emojis = ["🎯", "🎮", "🎲", "🎪", "🎨", "🎭", "🎬", "🎤", "🎧", "🎸", 
+                          "🎹", "🎺", "🎻", "🎼", "🎵", "🎶", "🏆", "🥇", "🥈", "🥉",
+                          "💯", "✨", "⭐️", "🌟", "💫", "🔥", "🎉", "🎊", "🎈", "🎁"]
     
     @State private var currentQuestionIndex = 0
     @State private var userAnswer = ""
@@ -37,7 +42,7 @@ struct QuizView: View {
                     .font(.headline)
                     .foregroundColor(.white)
                 
-                Text(questions[currentQuestionIndex].emoji)
+                Text(questions[currentQuestionIndex].emojis)
                     .font(.system(size: 80))
                 
                 TextField("Skriv ditt svar...", text: $userAnswer)
@@ -69,7 +74,12 @@ struct QuizView: View {
     }
     
     func checkAnswer() {
-        if userAnswer.lowercased() == questions[currentQuestionIndex].answer.lowercased(){
+        let currentQuestion = questions[currentQuestionIndex]
+        let trimmedAnswer = userAnswer.trimmingCharacters(in: .whitespaces).lowercased()
+        
+        // Check if answer matches correct answer or any alternate answers
+        if trimmedAnswer == currentQuestion.correctAnswer.lowercased() ||
+           currentQuestion.alternateAnswers.contains(where: { $0.lowercased() == trimmedAnswer }) {
             score += 1
         }
     }
