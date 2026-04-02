@@ -1,4 +1,4 @@
-//
+ //
 //  QuizView.swift
 //  quizApp
 //
@@ -7,11 +7,10 @@
 //  Updated by Sara Linden on 2026-04-02
 //
 
+ 
 import SwiftUI
-
 struct QuizView: View {
     @State private var questions: [QuizQuestion] = []
-    
     init() {
         _questions = State(initialValue: Array (quizQuestions.shuffled().prefix(10)))
     }
@@ -138,34 +137,35 @@ struct QuizView: View {
         }
         .navigationBarBackButtonHidden()
     }
-    func checkAnswer() {
+    
+        func checkAnswer() {
             let question = questions[currentQuestionIndex]
             let answer = userAnswer
                 .trimmingCharacters(in: .whitespacesAndNewlines)
                 .lowercased()
             let isCorrect =
-                answer == question.correctAnswer.lowercased() ||
-                question.alternateAnswers.contains { $0.lowercased() == answer }
-            if isCorrect {
+            answer == question.correctAnswer.lowercased() ||
+            question.alternateAnswers.contains { $0.lowercased() == answer }
+            if isCorrect{
                 score += 1
             }
             answeredQuestions.append((question, userAnswer, isCorrect))
         }
-        
-        func nextQuestion() {
+        func nextQuestion () {
             if currentQuestionIndex < questions.count - 1 {
                 currentQuestionIndex += 1
                 userAnswer = ""
             } else {
+                //Updated by Jhl
                 goToResultView = true
             }
         }
-        
         func endQuiz() {
             goToResultView = true
         }
     }
-
-    #Preview {
-        QuizView()
-    }
+ 
+ 
+#Preview {
+    QuizView()
+}
