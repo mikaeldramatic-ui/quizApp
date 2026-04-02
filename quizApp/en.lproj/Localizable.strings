@@ -1,0 +1,49 @@
+/* 
+  Localizable.strings
+  quizApp
+
+  Created by Sara Lindén on 2026-03-31.
+  
+*/
+
+"welcome_to" = "Welcome to";
+"emoji_quiz_title" = "Emoji Quiz";
+"start_game" = "Start Game";
+"how_to_play" = "How to Play";
+"leaderboard" = "Leaderboard";
+"settings" = "Settings";
+
+"how_to_play_title" = "How to Play";
+"instruction_1" = "Look at the emoji";
+"instruction_2" = "Think about what it means";
+"instruction_3" = "Write the movie, song, or band you think the emoji describes";
+"instruction_4" = "Go to the next question";
+"instruction_5" = "See your results";
+"instruction_6" = "Get on the leaderboard!";
+"example_title" = "Example";
+"example_answer" = "Answer: The Lion King";
+
+"leaderboard_title" = "Leaderboard";
+"settings_title" = "Settings";
+
+"question_progress" = "Question %d / %d";
+"write_answer" = "Write your answer...";
+"next_button" = "Next";
+"skip_button" = "Skip";
+"cancel_button" = "Cancel";
+
+"quit_alert_title" = "Are you sure you want to quit?";
+"yes_button" = "Yes";
+"no_button" = "No";
+
+"empty_answer_title" = "Please write an answer";
+"empty_answer_message" = "Enter an answer before pressing Next, or press Skip.";
+
+"correct" = "Correct!";
+"wrong" = "Wrong!";
+
+"quiz_finished" = "Quiz finished! Score: %d";
+"quiz_cancelled" = "Quiz cancelled";
+
+"category_film" = "Film";
+"category_music" = "Music";

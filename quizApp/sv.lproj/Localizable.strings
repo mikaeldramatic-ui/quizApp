@@ -1,0 +1,49 @@
+/* 
+  Localizable.strings
+  quizApp
+
+  Created by Sara Lindén on 2026-03-31.
+  
+*/
+
+"welcome_to" = "Välkommen till";
+"emoji_quiz_title" = "Emoji Quiz";
+"start_game" = "Starta spel";
+"how_to_play" = "Hur man spelar";
+"leaderboard" = "Topplista";
+"settings" = "Inställningar";
+
+"how_to_play_title" = "Hur man spelar";
+"instruction_1" = "Titta på emojin";
+"instruction_2" = "Fundera på vad den betyder";
+"instruction_3" = "Skriv filmen, låten eller bandet du tror att emojin beskriver";
+"instruction_4" = "Gå vidare till nästa fråga";
+"instruction_5" = "Se ditt resultat";
+"instruction_6" = "Ta en plats på topplistan!";
+"example_title" = "Exempel";
+"example_answer" = "Svar: Lejonkungen";
+
+"leaderboard_title" = "Topplista";
+"settings_title" = "Inställningar";
+
+"question_progress" = "Fråga %d / %d";
+"write_answer" = "Skriv ditt svar...";
+"next_button" = "Nästa";
+"skip_button" = "Hoppa över";
+"cancel_button" = "Avbryt";
+
+"quit_alert_title" = "Är du säker på att du vill avsluta?";
+"yes_button" = "Ja";
+"no_button" = "Nej";
+
+"empty_answer_title" = "Skriv ett svar";
+"empty_answer_message" = "Skriv ett svar innan du trycker på Nästa, eller tryck på Hoppa över.";
+
+"correct" = "Rätt!";
+"wrong" = "Fel!";
+
+"quiz_finished" = "Quizet är klart! Poäng: %d";
+"quiz_cancelled" = "Quiz avbrutet";
+
+"category_film" = "Film";
+"category_music" = "Musik";
