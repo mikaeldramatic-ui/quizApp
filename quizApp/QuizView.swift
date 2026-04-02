@@ -4,6 +4,7 @@
 //
 //  Created by Mikael Engvall on 2026-03-27
 //  Updated by Jaime Lavalle on 2026-04-01
+
  
 import SwiftUI
 struct QuizView: View {
@@ -21,7 +22,7 @@ struct QuizView: View {
     @State private var showQuitAlert = false
     //Väntar på Jaimes resultatVy
     @State private var goToResultView = false
-    @State private var answeredQuestions: [(QuizQuestion, Bool)] = []
+    @State private var answeredQuestions: [(QuizQuestion, String, Bool)] = []
     @State private var showAnswerAlert = false
 
     var body: some View {
@@ -125,7 +126,9 @@ struct QuizView: View {
             )
             }
         }
+        .navigationBarBackButtonHidden()
     }
+    
         func checkAnswer() {
             let question = questions[currentQuestionIndex]
             let answer = userAnswer
@@ -137,7 +140,7 @@ struct QuizView: View {
             if isCorrect{
                 score += 1
             }
-            answeredQuestions.append((question, isCorrect))
+            answeredQuestions.append((question, userAnswer, isCorrect))
         }
         func nextQuestion () {
             if currentQuestionIndex < questions.count - 1 {
