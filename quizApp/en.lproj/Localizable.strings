@@ -32,6 +32,16 @@
 "skip_button" = "Skip";
 "cancel_button" = "Cancel";
 
+"quit_alert_title" = "Are you sure you want to quit?";
+"yes_button" = "Yes";
+"no_button" = "No";
+
+"empty_answer_title" = "Please write an answer";
+"empty_answer_message" = "Enter an answer before pressing Next, or press Skip.";
+
+"correct" = "Correct!";
+"wrong" = "Wrong!";
+
 "quiz_finished" = "Quiz finished! Score: %d";
 "quiz_cancelled" = "Quiz cancelled";
 

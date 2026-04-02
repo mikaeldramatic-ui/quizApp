@@ -16,10 +16,10 @@
 "how_to_play_title" = "Hur man spelar";
 "instruction_1" = "Titta på emojin";
 "instruction_2" = "Fundera på vad den betyder";
-"instruction_3" = "Skriv filmen, låten eller bandet som du tror emojin beskriver";
+"instruction_3" = "Skriv filmen, låten eller bandet du tror att emojin beskriver";
 "instruction_4" = "Gå vidare till nästa fråga";
-"instruction_5" = "Se dina resultat";
-"instruction_6" = "Ta dig upp på topplistan!";
+"instruction_5" = "Se ditt resultat";
+"instruction_6" = "Ta en plats på topplistan!";
 "example_title" = "Exempel";
 "example_answer" = "Svar: Lejonkungen";
 
@@ -32,8 +32,18 @@
 "skip_button" = "Hoppa över";
 "cancel_button" = "Avbryt";
 
-"quiz_finished" = "Quiz klart! Poäng: %d";
-"quiz_cancelled" = "Quiz avbruten";
+"quit_alert_title" = "Är du säker på att du vill avsluta?";
+"yes_button" = "Ja";
+"no_button" = "Nej";
+
+"empty_answer_title" = "Skriv ett svar";
+"empty_answer_message" = "Skriv ett svar innan du trycker på Nästa, eller tryck på Hoppa över.";
+
+"correct" = "Rätt!";
+"wrong" = "Fel!";
+
+"quiz_finished" = "Quizet är klart! Poäng: %d";
+"quiz_cancelled" = "Quiz avbrutet";
 
 "category_film" = "Film";
 "category_music" = "Musik";

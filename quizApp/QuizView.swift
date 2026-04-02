@@ -3,13 +3,18 @@
 //  quizApp
 //
 //  Created by Mikael Engvall on 2026-03-29.
-//
+//  Updated by Jaime Lavalle on 2026-04-01
+//  Updated by Sara Linden on 2026-04-02
 
 import SwiftUI
 
 struct QuizView: View {
-
-    let questions = quizQuestions
+    
+    @State private var questions: [QuizQuestion] = []
+    
+    init() {
+        _questions = State(initialValue: Array(quizQuestions.shuffled().prefix(10)))
+    }
     
     // Array of quiz-related emojis for background
     private let emojis = ["🎯", "🎮", "🎲", "🎪", "🎨", "🎭", "🎬", "🎤", "🎧", "🎸",
@@ -19,6 +24,10 @@ struct QuizView: View {
     @State private var currentQuestionIndex = 0
     @State private var userAnswer = ""
     @State private var score = 0
+    @State private var showQuitAlert = false
+    @State private var goToResultView = false
+    @State private var answeredQuestions: [(QuizQuestion, Bool)] = []
+    @State private var showAnswerAlert = false
     
     private var questionProgressText: String {
         String(
@@ -29,81 +38,150 @@ struct QuizView: View {
     }
     
     var body: some View {
-        
-        ZStack {
-            EmojiBackgroundView(emojis: emojis, isAnimating: false)
-            
-            LinearGradient(
-                gradient: Gradient(colors: [
-                    Color.black.opacity(0.3),
-                    Color.black.opacity(0.5),
-                    Color.black.opacity(0.3)
-                ]),
-                startPoint: .top,
-                endPoint: .bottom
-            )
-            .ignoresSafeArea()
-         
-            //UI quiz
-            VStack(spacing: 30) {
-                Text(questionProgressText)
-                    .font(.headline)
-                    .foregroundColor(.white)
+        NavigationStack {
+            ZStack {
+                EmojiBackgroundView(emojis: emojis, isAnimating: false)
                 
-                Text(questions[currentQuestionIndex].emojis)
-                    .font(.system(size: 80))
+                LinearGradient(
+                    gradient: Gradient(colors: [
+                        Color.black.opacity(0.3),
+                        Color.black.opacity(0.5),
+                        Color.black.opacity(0.3)
+                    ]),
+                    startPoint: .top,
+                    endPoint: .bottom
+                )
+                .ignoresSafeArea()
                 
-                TextField("write_answer", text: $userAnswer)
-                    .textFieldStyle(.roundedBorder)
-                    .padding(.horizontal)
-                
-                VStack(spacing: 15) {
-                    Button("next_button") {
-                        checkAnswer()
-                        nextQuestion()
-                    }
-                    .buttonStyle(.borderedProminent)
+                VStack(spacing: 30) {
+                    Spacer()
                     
-                    Button("skip_button") {
-                        nextQuestion()
-                    }
-                    .buttonStyle(.bordered)
+                    Text(questionProgressText)
+                        .font(.headline)
+                        .foregroundColor(.white)
                     
-                    Button("cancel_button") {
-                        print(String(localized: "quiz_cancelled"))
+                    Text(questions[currentQuestionIndex].emojis)
+                        .font(.system(size: 100))
+                        .padding(.bottom, 20)
+                    
+                    TextField(String(localized: "write_answer"), text: $userAnswer)
+                        .textFieldStyle(.roundedBorder)
+                        .padding(.horizontal)
+                        .frame(height: 80)
+                    
+                    VStack(spacing: 15) {
+                        Button {
+                            if userAnswer.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
+                                showAnswerAlert = true
+                            } else {
+                                checkAnswer()
+                                nextQuestion()
+                            }
+                        } label: {
+                            Label(String(localized: "next_button"), systemImage: "arrow.right.circle.fill")
+                                .font(.title3.bold())
+                                .frame(maxWidth: .infinity)
+                                .padding(.vertical, 18)
+                                .background(
+                                    LinearGradient(
+                                        colors: [.green, .mint],
+                                        startPoint: .leading,
+                                        endPoint: .trailing
+                                    )
+                                )
+                                .foregroundStyle(.white)
+                                .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
+                                .shadow(color: .green.opacity(0.5), radius: 10, x: 0, y: 5)
+                        }
+                        .buttonStyle(.plain)
+                        
+                        Button {
+                            nextQuestion()
+                        } label: {
+                            Label(String(localized: "skip_button"), systemImage: "forward.fill")
+                                .font(.title3.bold())
+                                .frame(maxWidth: .infinity)
+                                .padding(.vertical, 18)
+                                .background(
+                                    LinearGradient(
+                                        colors: [.blue, .cyan],
+                                        startPoint: .leading,
+                                        endPoint: .trailing
+                                    )
+                                )
+                                .foregroundStyle(.white)
+                                .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
+                                .shadow(color: .blue.opacity(0.5), radius: 10, x: 0, y: 5)
+                        }
+                        .buttonStyle(.plain)
+                        
+                        Button(String(localized: "cancel_button")) {
+                            showQuitAlert = true
+                        }
+                        .font(.headline)
+                        .foregroundStyle(.red)
+                        .padding(.top, 10)
                     }
-                    .foregroundColor(.red)
+                    
+                    Spacer()
                 }
-                Spacer()
+                .padding()
             }
-            .padding()
-            
+            .alert(String(localized: "quit_alert_title"), isPresented: $showQuitAlert) {
+                Button(String(localized: "yes_button"), role: .destructive) {
+                    endQuiz()
+                }
+                Button(String(localized: "no_button"), role: .cancel) { }
+            } message: {
+                Text(String(localized: "quit_alert_message"))
+            }
+            .alert(String(localized: "empty_answer_title"), isPresented: $showAnswerAlert) {
+                Button("OK", role: .cancel) { }
+            } message: {
+                Text(String(localized: "empty_answer_message"))
+            }
+            .navigationDestination(isPresented: $goToResultView) {
+                ResultView(
+                    score: score,
+                    results: answeredQuestions
+                )
+            }
         }
     }
     
     func checkAnswer() {
-        let currentQuestion = questions[currentQuestionIndex]
-        let trimmedAnswer = userAnswer.trimmingCharacters(in: .whitespaces).lowercased()
+        let question = questions[currentQuestionIndex]
+        let answer = userAnswer
+            .trimmingCharacters(in: .whitespacesAndNewlines)
+            .lowercased()
         
-        // Check if answer matches correct answer or any alternate answers
-        if trimmedAnswer == currentQuestion.correctAnswer.lowercased() ||
-           currentQuestion.alternateAnswers.contains(where: { $0.lowercased() == trimmedAnswer }) {
+        let isCorrect =
+            answer == question.correctAnswer.lowercased() ||
+            question.alternateAnswers.contains { $0.lowercased() == answer }
+        
+        if isCorrect {
             score += 1
             print(String(localized: "correct"))
         } else {
             print(String(localized: "wrong"))
         }
+        
+        answeredQuestions.append((question, isCorrect))
     }
     
     func nextQuestion() {
-        
         userAnswer = ""
         
         if currentQuestionIndex < questions.count - 1 {
             currentQuestionIndex += 1
         } else {
             print(String(format: NSLocalizedString("quiz_finished", comment: ""), score))
+            goToResultView = true
         }
+    }
+    
+    func endQuiz() {
+        goToResultView = true
     }
 }
 
