@@ -31,7 +31,7 @@ struct SettingsView: View {
             .ignoresSafeArea()
             
             // Lägg kod här
-            VStack(spacing: 32) {
+            VStack {
                 Text("settings_title")
                     .font(.largeTitle.bold())
                     .foregroundStyle(.white)
