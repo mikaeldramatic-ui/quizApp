@@ -33,9 +33,9 @@ struct SettingsView: View {
                 endPoint: .bottom
             )
             .ignoresSafeArea()
-
+            
             VStack(spacing: 32) {
-                Text("Settings")
+                Text("settings_title")
                     .font(.largeTitle.bold())
                     .foregroundStyle(.white)
 
@@ -135,7 +135,7 @@ struct SettingsView: View {
                 .animation(.spring, value: showConfirmation)
             }
         }
-        .navigationTitle("Settings")
+        .navigationTitle("settings_title")
         .navigationBarTitleDisplayMode(.inline)
     }
 }

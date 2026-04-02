@@ -34,30 +34,30 @@ struct HowToPlayView: View {
             ScrollView {
                 VStack(spacing: 30) {
                     // Title
-                    Text("How to Play")
+                    Text("how_to_play_title")
                         .font(.largeTitle.bold())
                         .foregroundStyle(.white)
                         .padding(.top, 20)
                     
                     // Instructions
                     VStack(spacing: 20) {
-                        InstructionStep(number: "1", emoji: "👀", text: "Look at the emoji")
+                        InstructionStep(number: "1", emoji: "👀", text: String(localized: "instruction_1"))
                         
-                        InstructionStep(number: "2", emoji: "🤔", text: "Think about what it means")
+                        InstructionStep(number: "2", emoji: "🤔", text: String(localized: "instruction_2"))
                         
-                        InstructionStep(number: "3", emoji: "✍️", text: "Write the Movie, Song, or Band you think the emoji describes")
+                        InstructionStep(number: "3", emoji: "✍️", text: String(localized: "instruction_3"))
                         
-                        InstructionStep(number: "4", emoji: "➡️", text: "Go to next question")
+                        InstructionStep(number: "4", emoji: "➡️", text: String(localized: "instruction_4"))
                         
-                        InstructionStep(number: "5", emoji: "📊", text: "See your results")
+                        InstructionStep(number: "5", emoji: "📊", text: String(localized: "instruction_5"))
                         
-                        InstructionStep(number: "6", emoji: "🏆", text: "Get on the Leaderboard!")
+                        InstructionStep(number: "6", emoji: "🏆", text: String(localized: "instruction_6"))
                     }
                     .padding(.horizontal, 20)
                     
                     // Example
                     VStack(spacing: 15) {
-                        Text("Example")
+                        Text("example_title")
                             .font(.title2.bold())
                             .foregroundStyle(.white)
                         
@@ -65,7 +65,7 @@ struct HowToPlayView: View {
                             Text("🦁👑")
                                 .font(.system(size: 60))
                             
-                            Text("Answer: The Lion King")
+                            Text("example_answer")
                                 .font(.headline)
                                 .foregroundStyle(.white)
                                 .padding()
@@ -79,7 +79,7 @@ struct HowToPlayView: View {
                 }
             }
         }
-        .navigationTitle("How to Play")
+        .navigationTitle("how_to_play_title")
         .navigationBarTitleDisplayMode(.inline)
     }
 }

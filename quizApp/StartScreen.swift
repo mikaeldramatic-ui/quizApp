@@ -39,12 +39,12 @@ struct StartScreen: View {
                     
                     // Title section
                     VStack(spacing: 16) {
-                        Text("Welcome to")
+                        Text("welcome_to")
                             .font(.title2)
                             .fontWeight(.medium)
                             .foregroundStyle(.white)
                         
-                        Text("Emoji Quiz")
+                        Text("emoji_quiz_title")
                             .font(.system(size: 56, weight: .bold, design: .rounded))
                             .foregroundStyle(
                                 LinearGradient(
@@ -65,7 +65,7 @@ struct StartScreen: View {
                     VStack(spacing: 16) {
                         // Start Game button (Primary action)
                         NavigationLink(destination: QuizView()) {
-                            Label("Start Game", systemImage: "play.fill")
+                            Label("start_game", systemImage: "play.fill")
                                 .font(.title3.bold())
                                 .frame(maxWidth: .infinity)
                                 .padding(.vertical, 18)
@@ -84,7 +84,7 @@ struct StartScreen: View {
                         
                         // How to Play button (Primary action)
                         NavigationLink(destination: HowToPlayView()) {
-                            Label("How to Play", systemImage: "questionmark.circle.fill")
+                            Label("how_to_play", systemImage: "questionmark.circle.fill")
                                 .font(.title3.bold())
                                 .frame(maxWidth: .infinity)
                                 .padding(.vertical, 18)
@@ -104,7 +104,7 @@ struct StartScreen: View {
                         HStack(spacing: 16) {
                             // Statistik/leaderboard button (Secondary action)
                             NavigationLink(destination: LeaderboardView()) {
-                                Label("Leaderboard", systemImage: "trophy.fill")
+                                Label("leaderboard", systemImage: "trophy.fill")
                                     .font(.headline)
                                     .frame(maxWidth: .infinity)
                                     .padding(.vertical, 16)
@@ -116,7 +116,7 @@ struct StartScreen: View {
                             
                             // Settings button (Secondary action)
                             NavigationLink(destination: SettingsView()) {
-                                Label("Settings", systemImage: "gearshape.fill")
+                                Label("settings", systemImage: "gearshape.fill")
                                     .font(.headline)
                                     .frame(maxWidth: .infinity)
                                     .padding(.vertical, 16)

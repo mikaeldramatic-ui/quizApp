@@ -32,12 +32,12 @@ struct LeaderboardView: View {
             
             // Content will go here
             VStack {
-                Text("Leaderboard")
+                Text("leaderboard_title")
                     .font(.largeTitle.bold())
                     .foregroundStyle(.white)
             }
         }
-        .navigationTitle("Leaderboard")
+        .navigationTitle("leaderboard_title")
         .navigationBarTitleDisplayMode(.inline)
     }
 }

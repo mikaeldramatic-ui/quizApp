@@ -4,6 +4,8 @@
 //
 //  Created by Mikael Engvall on 2026-03-27
 //  Updated by Jaime Lavalle on 2026-04-01
+//  Updated by Sara Linden on 2026-04-02
+//
 
  
 import SwiftUI
@@ -20,11 +22,17 @@ struct QuizView: View {
     @State private var userAnswer = ""
     @State private var score = 0
     @State private var showQuitAlert = false
-    //Väntar på Jaimes resultatVy
     @State private var goToResultView = false
     @State private var answeredQuestions: [(QuizQuestion, String, Bool)] = []
     @State private var showAnswerAlert = false
-
+    
+    private var questionProgressText: String {
+        String(
+            format: NSLocalizedString("question_progress", comment: ""),
+            currentQuestionIndex + 1,
+            questions.count
+        )
+    }
     var body: some View {
         NavigationStack {
             ZStack {
@@ -39,20 +47,19 @@ struct QuizView: View {
                     endPoint: .bottom
                 )
                 .ignoresSafeArea()
-                //UI quiz
+                // UI quiz
                 VStack(spacing: 30) {
                     Spacer()
-                    Text("Question \(currentQuestionIndex + 1) / \(questions.count)")
+                    Text(questionProgressText)
                         .font(.headline)
                         .foregroundColor(.white)
                     Text(questions[currentQuestionIndex].emojis)
                         .font(.system(size: 100))
                         .padding(.bottom, 20)
-                    TextField("Write answer...", text: $userAnswer)
+                    TextField(String(localized: "write_answer"), text: $userAnswer)
                         .textFieldStyle(.roundedBorder)
                         .padding(.horizontal)
                         .frame(height: 80)
-                    //Spacer()
                     VStack(spacing: 15) {
                         Button {
                             if userAnswer.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
@@ -62,7 +69,7 @@ struct QuizView: View {
                                 nextQuestion()
                             }
                         } label: {
-                            Label("Next", systemImage: "arrow.right.circle.fill")
+                            Label(String(localized: "next_button"), systemImage: "arrow.right.circle.fill")
                                 .font(.title3.bold())
                                 .frame(maxWidth: .infinity)
                                 .padding(.vertical, 18)
@@ -81,7 +88,7 @@ struct QuizView: View {
                         Button {
                             nextQuestion()
                         } label: {
-                            Label("Skip", systemImage: "forward.fill")
+                            Label(String(localized: "skip_button"), systemImage: "forward.fill")
                                 .font(.title3.bold())
                                 .frame(maxWidth: .infinity)
                                 .padding(.vertical, 18)
@@ -97,7 +104,7 @@ struct QuizView: View {
                                 .shadow(color: .blue.opacity(0.5), radius: 10, x: 0, y: 5)
                         }
                         .buttonStyle(.plain)
-                        Button("Cancel") {
+                        Button(String(localized: "cancel_button")) {
                             showQuitAlert = true
                         }
                         .font(.headline)
@@ -108,22 +115,24 @@ struct QuizView: View {
                 }
                 .padding()
             }
-            .alert("Are you sure you want to quit?", isPresented: $showQuitAlert) {
-                Button("Yes", role: .destructive) {
+            .alert(String(localized: "quit_alert_title"), isPresented: $showQuitAlert) {
+                Button(String(localized: "yes_button"), role: .destructive) {
                     endQuiz()
                 }
-                Button("No", role: .cancel) { }
+                Button(String(localized: "no_button"), role: .cancel) { }
+            } message: {
+                Text(String(localized: "quit_alert_message"))
             }
-            .alert("Please write an answer", isPresented: $showAnswerAlert) {
+            .alert(String(localized: "empty_answer_title"), isPresented: $showAnswerAlert) {
                 Button("OK", role: .cancel) { }
             } message: {
-                Text("Enter an answer before pressing Next, or press Skip.")
+                Text(String(localized: "empty_answer_message"))
             }
-            //Updated by Jhl
-            .navigationDestination(isPresented: $goToResultView){
-                ResultView(score: score,
-            results: answeredQuestions
-            )
+            .navigationDestination(isPresented: $goToResultView) {
+                ResultView(
+                    score: score,
+                    results: answeredQuestions
+                )
             }
         }
         .navigationBarBackButtonHidden()
