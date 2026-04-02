@@ -139,34 +139,33 @@ struct QuizView: View {
         .navigationBarBackButtonHidden()
     }
     func checkAnswer() {
-        let question = questions[currentQuestionIndex]
-        let answer = userAnswer
-            .trimmingCharacters(in: .whitespacesAndNewlines)
-            .lowercased()
-        let isCorrect =
-            answer == question.correctAnswer.lowercased() ||
-            question.alternateAnswers.contains { $0.lowercased() == answer }
-        if isCorrect {
-            score += 1
-            print(String(localized: "correct"))
-        } else {
-            print(String(localized: "wrong"))
+            let question = questions[currentQuestionIndex]
+            let answer = userAnswer
+                .trimmingCharacters(in: .whitespacesAndNewlines)
+                .lowercased()
+            let isCorrect =
+                answer == question.correctAnswer.lowercased() ||
+                question.alternateAnswers.contains { $0.lowercased() == answer }
+            if isCorrect {
+                score += 1
+            }
+            answeredQuestions.append((question, userAnswer, isCorrect))
         }
-        answeredQuestions.append((question, userAnswer, isCorrect))
-    }
-    func nextQuestion() {
-        if currentQuestionIndex < questions.count - 1 {
-            currentQuestionIndex += 1
-            userAnswer = ""
-        } else {
-            print(String(format: NSLocalizedString("quiz_finished", comment: ""), score))
+        
+        func nextQuestion() {
+            if currentQuestionIndex < questions.count - 1 {
+                currentQuestionIndex += 1
+                userAnswer = ""
+            } else {
+                goToResultView = true
+            }
+        }
+        
+        func endQuiz() {
             goToResultView = true
         }
     }
-    func endQuiz() {
-        goToResultView = true
+
+    #Preview {
+        QuizView()
     }
-}
-#Preview {
-    QuizView()
-}
