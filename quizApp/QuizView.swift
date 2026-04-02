@@ -12,13 +12,21 @@ struct QuizView: View {
     let questions = quizQuestions
     
     // Array of quiz-related emojis for background
-    private let emojis = ["🎯", "🎮", "🎲", "🎪", "🎨", "🎭", "🎬", "🎤", "🎧", "🎸", 
+    private let emojis = ["🎯", "🎮", "🎲", "🎪", "🎨", "🎭", "🎬", "🎤", "🎧", "🎸",
                           "🎹", "🎺", "🎻", "🎼", "🎵", "🎶", "🏆", "🥇", "🥈", "🥉",
                           "💯", "✨", "⭐️", "🌟", "💫", "🔥", "🎉", "🎊", "🎈", "🎁"]
     
     @State private var currentQuestionIndex = 0
     @State private var userAnswer = ""
     @State private var score = 0
+    
+    private var questionProgressText: String {
+        String(
+            format: NSLocalizedString("question_progress", comment: ""),
+            currentQuestionIndex + 1,
+            questions.count
+        )
+    }
     
     var body: some View {
         
@@ -38,31 +46,31 @@ struct QuizView: View {
          
             //UI quiz
             VStack(spacing: 30) {
-                Text("Fråga \(currentQuestionIndex + 1) / \(questions.count)")
+                Text(questionProgressText)
                     .font(.headline)
                     .foregroundColor(.white)
                 
                 Text(questions[currentQuestionIndex].emojis)
                     .font(.system(size: 80))
                 
-                TextField("Skriv ditt svar...", text: $userAnswer)
+                TextField("write_answer", text: $userAnswer)
                     .textFieldStyle(.roundedBorder)
                     .padding(.horizontal)
                 
                 VStack(spacing: 15) {
-                    Button("Nästa") {
+                    Button("next_button") {
                         checkAnswer()
                         nextQuestion()
                     }
                     .buttonStyle(.borderedProminent)
                     
-                    Button("Hoppa över") {
+                    Button("skip_button") {
                         nextQuestion()
                     }
                     .buttonStyle(.bordered)
                     
-                    Button("Avbryt") {
-                        print("Quiz avbruten")
+                    Button("cancel_button") {
+                        print(String(localized: "quiz_cancelled"))
                     }
                     .foregroundColor(.red)
                 }
@@ -81,16 +89,20 @@ struct QuizView: View {
         if trimmedAnswer == currentQuestion.correctAnswer.lowercased() ||
            currentQuestion.alternateAnswers.contains(where: { $0.lowercased() == trimmedAnswer }) {
             score += 1
+            print(String(localized: "correct"))
+        } else {
+            print(String(localized: "wrong"))
         }
     }
-    func nextQuestion () {
+    
+    func nextQuestion() {
         
         userAnswer = ""
         
         if currentQuestionIndex < questions.count - 1 {
             currentQuestionIndex += 1
         } else {
-            print ("Quiz klart! Poäng: \(score)")
+            print(String(format: NSLocalizedString("quiz_finished", comment: ""), score))
         }
     }
 }

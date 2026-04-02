@@ -32,12 +32,12 @@ struct SettingsView: View {
             
             // Lägg kod här
             VStack {
-                Text("Settings")
+                Text("settings_title")
                     .font(.largeTitle.bold())
                     .foregroundStyle(.white)
             }
         }
-        .navigationTitle("Settings")
+        .navigationTitle("settings_title")
         .navigationBarTitleDisplayMode(.inline)
     }
 }

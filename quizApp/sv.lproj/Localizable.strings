@@ -6,34 +6,34 @@
   
 */
 
-"welcome_to" = "Welcome to";
+"welcome_to" = "Välkommen till";
 "emoji_quiz_title" = "Emoji Quiz";
-"start_game" = "Start Game";
-"how_to_play" = "How to Play";
-"leaderboard" = "Leaderboard";
-"settings" = "Settings";
+"start_game" = "Starta spel";
+"how_to_play" = "Hur man spelar";
+"leaderboard" = "Topplista";
+"settings" = "Inställningar";
 
-"how_to_play_title" = "How to Play";
-"instruction_1" = "Look at the emoji";
-"instruction_2" = "Think about what it means";
-"instruction_3" = "Write the movie, song, or band you think the emoji describes";
-"instruction_4" = "Go to the next question";
-"instruction_5" = "See your results";
-"instruction_6" = "Get on the leaderboard!";
-"example_title" = "Example";
-"example_answer" = "Answer: The Lion King";
+"how_to_play_title" = "Hur man spelar";
+"instruction_1" = "Titta på emojin";
+"instruction_2" = "Fundera på vad den betyder";
+"instruction_3" = "Skriv filmen, låten eller bandet som du tror emojin beskriver";
+"instruction_4" = "Gå vidare till nästa fråga";
+"instruction_5" = "Se dina resultat";
+"instruction_6" = "Ta dig upp på topplistan!";
+"example_title" = "Exempel";
+"example_answer" = "Svar: Lejonkungen";
 
-"leaderboard_title" = "Leaderboard";
-"settings_title" = "Settings";
+"leaderboard_title" = "Topplista";
+"settings_title" = "Inställningar";
 
-"question_progress" = "Question %d / %d";
-"write_answer" = "Write your answer...";
-"next_button" = "Next";
-"skip_button" = "Skip";
-"cancel_button" = "Cancel";
+"question_progress" = "Fråga %d / %d";
+"write_answer" = "Skriv ditt svar...";
+"next_button" = "Nästa";
+"skip_button" = "Hoppa över";
+"cancel_button" = "Avbryt";
 
-"quiz_finished" = "Quiz finished! Score: %d";
-"quiz_cancelled" = "Quiz cancelled";
+"quiz_finished" = "Quiz klart! Poäng: %d";
+"quiz_cancelled" = "Quiz avbruten";
 
 "category_film" = "Film";
-"category_music" = "Music";
+"category_music" = "Musik";
