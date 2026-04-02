@@ -4,7 +4,7 @@ let quizQuestions: [QuizQuestion] = [
     QuizQuestion(emojis: "🦁👑", correctAnswer: "The Lion King", alternateAnswers: ["Lion King"], category: .film),
     QuizQuestion(emojis: "🚢🧊❤️", correctAnswer: "Titanic", alternateAnswers: [], category: .film),
     QuizQuestion(emojis: "🕷️👨", correctAnswer: "Spider-Man", alternateAnswers: ["Spiderman", "Spider man"], category: .film),
-    QuizQuestion(emojis: "👻🚫", correctAnswer: "Ghostbusters", alternateAnswers: ["Ghost busters"], category: .film),
+    QuizQuestion(emojis: "👻🚫", correctAnswer: "Ghostbusters", alternateAnswers: ["Ghost busters",], category: .film),
     QuizQuestion(emojis: "🌟⚔️", correctAnswer: "Star Wars", alternateAnswers: ["Starwars"], category: .film),
     QuizQuestion(emojis: "🧙‍♂️💍🌋", correctAnswer: "The Lord of the Rings", alternateAnswers: ["Lord of the Rings"], category: .film),
     QuizQuestion(emojis: "🐠🔍", correctAnswer: "Finding Nemo", alternateAnswers: ["Nemo"], category: .film),
