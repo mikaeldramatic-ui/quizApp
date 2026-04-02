@@ -2,14 +2,14 @@
 //  QuizView.swift
 //  quizApp
 //
-//  Created by Mikael Engvall on 2026-03-29.
+//  Created by Mikael Engvall on 2026-03-27
 //  Updated by Jaime Lavalle on 2026-04-01
 //  Updated by Sara Linden on 2026-04-02
+//
 
 import SwiftUI
 
 struct QuizView: View {
-    
     @State private var questions: [QuizQuestion] = []
     
     init() {
@@ -26,7 +26,7 @@ struct QuizView: View {
     @State private var score = 0
     @State private var showQuitAlert = false
     @State private var goToResultView = false
-    @State private var answeredQuestions: [(QuizQuestion, Bool)] = []
+    @State private var answeredQuestions: [(QuizQuestion, String, Bool)] = []
     @State private var showAnswerAlert = false
     
     private var questionProgressText: String {
@@ -36,7 +36,7 @@ struct QuizView: View {
             questions.count
         )
     }
-    
+
     var body: some View {
         NavigationStack {
             ZStack {
@@ -53,6 +53,7 @@ struct QuizView: View {
                 )
                 .ignoresSafeArea()
                 
+                // UI quiz
                 VStack(spacing: 30) {
                     Spacer()
                     
@@ -147,6 +148,7 @@ struct QuizView: View {
                 )
             }
         }
+        .navigationBarBackButtonHidden()
     }
     
     func checkAnswer() {
@@ -166,14 +168,13 @@ struct QuizView: View {
             print(String(localized: "wrong"))
         }
         
-        answeredQuestions.append((question, isCorrect))
+        answeredQuestions.append((question, userAnswer, isCorrect))
     }
     
     func nextQuestion() {
-        userAnswer = ""
-        
         if currentQuestionIndex < questions.count - 1 {
             currentQuestionIndex += 1
+            userAnswer = ""
         } else {
             print(String(format: NSLocalizedString("quiz_finished", comment: ""), score))
             goToResultView = true
