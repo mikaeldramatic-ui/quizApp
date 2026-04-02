@@ -13,14 +13,12 @@ struct QuizView: View {
     @State private var questions: [QuizQuestion] = []
     
     init() {
-        _questions = State(initialValue: Array(quizQuestions.shuffled().prefix(10)))
+        _questions = State(initialValue: Array (quizQuestions.shuffled().prefix(10)))
     }
-    
     // Array of quiz-related emojis for background
     private let emojis = ["🎯", "🎮", "🎲", "🎪", "🎨", "🎭", "🎬", "🎤", "🎧", "🎸",
                           "🎹", "🎺", "🎻", "🎼", "🎵", "🎶", "🏆", "🥇", "🥈", "🥉",
                           "💯", "✨", "⭐️", "🌟", "💫", "🔥", "🎉", "🎊", "🎈", "🎁"]
-    
     @State private var currentQuestionIndex = 0
     @State private var userAnswer = ""
     @State private var score = 0
@@ -36,12 +34,10 @@ struct QuizView: View {
             questions.count
         )
     }
-
     var body: some View {
         NavigationStack {
             ZStack {
                 EmojiBackgroundView(emojis: emojis, isAnimating: false)
-                
                 LinearGradient(
                     gradient: Gradient(colors: [
                         Color.black.opacity(0.3),
@@ -52,24 +48,19 @@ struct QuizView: View {
                     endPoint: .bottom
                 )
                 .ignoresSafeArea()
-                
                 // UI quiz
                 VStack(spacing: 30) {
                     Spacer()
-                    
                     Text(questionProgressText)
                         .font(.headline)
                         .foregroundColor(.white)
-                    
                     Text(questions[currentQuestionIndex].emojis)
                         .font(.system(size: 100))
                         .padding(.bottom, 20)
-                    
                     TextField(String(localized: "write_answer"), text: $userAnswer)
                         .textFieldStyle(.roundedBorder)
                         .padding(.horizontal)
                         .frame(height: 80)
-                    
                     VStack(spacing: 15) {
                         Button {
                             if userAnswer.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
@@ -95,7 +86,6 @@ struct QuizView: View {
                                 .shadow(color: .green.opacity(0.5), radius: 10, x: 0, y: 5)
                         }
                         .buttonStyle(.plain)
-                        
                         Button {
                             nextQuestion()
                         } label: {
@@ -115,7 +105,6 @@ struct QuizView: View {
                                 .shadow(color: .blue.opacity(0.5), radius: 10, x: 0, y: 5)
                         }
                         .buttonStyle(.plain)
-                        
                         Button(String(localized: "cancel_button")) {
                             showQuitAlert = true
                         }
@@ -123,7 +112,6 @@ struct QuizView: View {
                         .foregroundStyle(.red)
                         .padding(.top, 10)
                     }
-                    
                     Spacer()
                 }
                 .padding()
@@ -150,27 +138,22 @@ struct QuizView: View {
         }
         .navigationBarBackButtonHidden()
     }
-    
     func checkAnswer() {
         let question = questions[currentQuestionIndex]
         let answer = userAnswer
             .trimmingCharacters(in: .whitespacesAndNewlines)
             .lowercased()
-        
         let isCorrect =
             answer == question.correctAnswer.lowercased() ||
             question.alternateAnswers.contains { $0.lowercased() == answer }
-        
         if isCorrect {
             score += 1
             print(String(localized: "correct"))
         } else {
             print(String(localized: "wrong"))
         }
-        
         answeredQuestions.append((question, userAnswer, isCorrect))
     }
-    
     func nextQuestion() {
         if currentQuestionIndex < questions.count - 1 {
             currentQuestionIndex += 1
@@ -180,12 +163,10 @@ struct QuizView: View {
             goToResultView = true
         }
     }
-    
     func endQuiz() {
         goToResultView = true
     }
 }
-
 #Preview {
     QuizView()
 }
