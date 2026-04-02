@@ -32,7 +32,7 @@ let quizQuestions: [QuizQuestion] = [
     QuizQuestion(emojis: "💜🌧️", correctAnswer: "Purple Rain", alternateAnswers: [], category: .music),
     QuizQuestion(emojis: "🧊🧊👶", correctAnswer: "Ice Ice Baby", alternateAnswers: [], category: .music),
     QuizQuestion(emojis: "💃👑🎶", correctAnswer: "Dancing Queen", alternateAnswers: [], category: .music),
-    QuizQuestion(emojis: "🔥🌶️🌶️", correctAnswer: "Red Hot Chili Peppers", alternateAnswers: ["Chili Peppers"], category: .music),
+    QuizQuestion(emojis: "🔥🌶️🌶️", correctAnswer: "Red Hot Chili Peppers", alternateAnswers: ["Chili Peppers", "Red Hot Chilipeppers"], category: .music),
     QuizQuestion(emojis: "📻👤", correctAnswer: "Radiohead", alternateAnswers: ["Radio Head"], category: .music),
     QuizQuestion(emojis: "🇸🇪🏠😀", correctAnswer: "Swedish House Mafia", alternateAnswers: [], category: .music),
     QuizQuestion(emojis: "🦅👁️🍒", correctAnswer: "Eagle-Eye Cherry", alternateAnswers: ["Eagle eye cherry"], category: .music),

@@ -102,7 +102,8 @@ struct StartScreen: View {
                         .buttonStyle(.plain)
                         
                         HStack(spacing: 16) {
-                            // Statistik/leaderboard button (Secondary action)
+                            // Statistik/leaderboard button
+                            // FRAMTIDA FEATURE
                             NavigationLink(destination: LeaderboardView()) {
                                 Label("leaderboard", systemImage: "trophy.fill")
                                     .font(.headline)
@@ -115,6 +116,7 @@ struct StartScreen: View {
                             .buttonStyle(.plain)
                             
                             // Settings button (Secondary action)
+                            // FRAMTIDA FEATURE (språket styrs nu av telefonens språksetting och vi vill i framtiden kunna välja att override till eget valt språk)
                             NavigationLink(destination: SettingsView()) {
                                 Label("settings", systemImage: "gearshape.fill")
                                     .font(.headline)

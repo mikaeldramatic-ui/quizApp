@@ -3,7 +3,8 @@
 //  quizApp
 //
 //  Created by Jaime Lavalle on 4/1/26.
-// Updated by Mikael Engvall on 4/2/26.
+//  Updated by Mikael Engvall on 4/2/26.
+//  Updated by Sara Linden on 4/2/26.
  
 import SwiftUI
  
@@ -34,7 +35,7 @@ struct ResultView: View {
             
             VStack(spacing: 20) {
                 //  Score
-                Text("Your Score")
+                Text("result_your_score")
                     .font(.title)
                     .foregroundColor(.white)
                 
@@ -68,11 +69,11 @@ struct ResultView: View {
                                         .font(.title2)
                                 }
                                 
-                                Text ("Your answer: \(userAnswer)")
+                                Text(String(format: NSLocalizedString("result_your_answer", comment: ""), userAnswer))
                                     .foregroundColor(isCorrect ? .green : .red)
                                 
                                 if !isCorrect {
-                                    Text("Right answer is: \(question.correctAnswer)")
+                                    Text(String(format: NSLocalizedString("result_right_answer_is", comment: ""), question.correctAnswer))
                                         .foregroundColor(.white.opacity(0.8))
                                         .font(.subheadline)
                                 }
@@ -87,7 +88,7 @@ struct ResultView: View {
                 NavigationLink{
                     QuizView()
                 } label: {
-                    Label("Play Again", systemImage: "arrow.clockwise")
+                    Label("result_play_again", systemImage: "arrow.clockwise")
                         .font(.title3.bold())
                         .frame(maxWidth: .infinity)
                         .padding(.vertical, 18)
@@ -107,7 +108,7 @@ struct ResultView: View {
                 NavigationLink {
                     StartScreen()
                 } label: {
-                    Label("Back to Main", systemImage: "house.fill")
+                    Label("result_back_to_main", systemImage: "house.fill")
                         .font(.title3.bold())
                         .frame(maxWidth: .infinity)
                         .padding(.vertical, 18)
@@ -126,7 +127,7 @@ struct ResultView: View {
             }
                 .padding()
             }
-            .navigationTitle("Results")
+            .navigationTitle("result_title")
             .navigationBarBackButtonHidden()
         }
         //  Feedback
@@ -135,14 +136,11 @@ struct ResultView: View {
             
             switch percentage {
             case 0.8...:
-                return "Extraordinary!"
+                return NSLocalizedString("result_feedback_extraordinary", comment: "")
             case 0.5...:
-                return "Good job!"
+                return NSLocalizedString("result_feedback_good_job", comment: "")
             default:
-                return "Keep working!"
+                return NSLocalizedString("result_feedback_keep_working", comment: "")
             }
         }
     }
-    
-    
-
