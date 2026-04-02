@@ -47,3 +47,13 @@
 
 "category_film" = "Film";
 "category_music" = "Music";
+
+"result_your_score" = "Your Score";
+"result_your_answer" = "Your answer: %@";
+"result_right_answer_is" = "Right answer is: %@";
+"result_play_again" = "Play Again";
+"result_back_to_main" = "Back to Main";
+"result_title" = "Results";
+"result_feedback_extraordinary" = "Extraordinary!";
+"result_feedback_good_job" = "Good job!";
+"result_feedback_keep_working" = "Keep working!";

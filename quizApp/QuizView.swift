@@ -86,6 +86,7 @@ struct QuizView: View {
                         }
                         .buttonStyle(.plain)
                         Button {
+                            answeredQuestions.append((questions[currentQuestionIndex], "", false))
                             nextQuestion()
                         } label: {
                             Label(String(localized: "skip_button"), systemImage: "forward.fill")

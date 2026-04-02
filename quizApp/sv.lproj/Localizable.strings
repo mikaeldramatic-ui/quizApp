@@ -47,3 +47,13 @@
 
 "category_film" = "Film";
 "category_music" = "Musik";
+
+"result_your_score" = "Din poäng";
+"result_your_answer" = "Ditt svar: %@";
+"result_right_answer_is" = "Rätt svar är: %@";
+"result_play_again" = "Spela igen";
+"result_back_to_main" = "Tillbaka till start";
+"result_title" = "Resultat";
+"result_feedback_extraordinary" = "Enastående!";
+"result_feedback_good_job" = "Bra jobbat!";
+"result_feedback_keep_working" = "Fortsätt kämpa!";
