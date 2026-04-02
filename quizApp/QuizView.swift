@@ -1,14 +1,12 @@
-//
+ //
 //  QuizView.swift
 //  quizApp
 //
-//  Created by Mikael Engvall on 2026-03-29.
-//
+//  Created by Mikael Engvall on 2026-03-27
+//  Updated by Jaime Lavalle on 2026-04-01
  
 import SwiftUI
- 
 struct QuizView: View {
-    
     @State private var questions: [QuizQuestion] = []
     init() {
         _questions = State(initialValue: Array (quizQuestions.shuffled().prefix(10)))
@@ -22,10 +20,10 @@ struct QuizView: View {
     @State private var score = 0
     @State private var showQuitAlert = false
     //Väntar på Jaimes resultatVy
-    //@State private var goToResultView = false
+    @State private var goToResultView = false
     @State private var answeredQuestions: [(QuizQuestion, Bool)] = []
     @State private var showAnswerAlert = false
-    
+
     var body: some View {
         NavigationStack {
             ZStack {
@@ -54,7 +52,6 @@ struct QuizView: View {
                         .padding(.horizontal)
                         .frame(height: 80)
                     //Spacer()
-                    
                     VStack(spacing: 15) {
                         Button {
                             if userAnswer.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
@@ -80,7 +77,6 @@ struct QuizView: View {
                                 .shadow(color: .green.opacity(0.5), radius: 10, x: 0, y: 5)
                         }
                         .buttonStyle(.plain)
-                        
                         Button {
                             nextQuestion()
                         } label: {
@@ -100,7 +96,6 @@ struct QuizView: View {
                                 .shadow(color: .blue.opacity(0.5), radius: 10, x: 0, y: 5)
                         }
                         .buttonStyle(.plain)
-                        
                         Button("Cancel") {
                             showQuitAlert = true
                         }
@@ -123,27 +118,22 @@ struct QuizView: View {
             } message: {
                 Text("Enter an answer before pressing Next, or press Skip.")
             }
-            
-            //Väntar på Jaime
-            //.navigationDestination(isPresented: //$goToResultView){
-                //ResultView(score: score,
-            //results: answeredQuestions
-            //)
-            //}
+            //Updated by Jhl
+            .navigationDestination(isPresented: $goToResultView){
+                ResultView(score: score,
+            results: answeredQuestions
+            )
+            }
         }
-        
     }
         func checkAnswer() {
             let question = questions[currentQuestionIndex]
-            
             let answer = userAnswer
                 .trimmingCharacters(in: .whitespacesAndNewlines)
                 .lowercased()
-            
             let isCorrect =
             answer == question.correctAnswer.lowercased() ||
             question.alternateAnswers.contains { $0.lowercased() == answer }
-            
             if isCorrect{
                 score += 1
             }
@@ -154,17 +144,16 @@ struct QuizView: View {
                 currentQuestionIndex += 1
                 userAnswer = ""
             } else {
-                //Väntar på Jaime
-                //goToResultView = true
+                //Updated by Jhl
+                goToResultView = true
             }
         }
         func endQuiz() {
-            //goToResultView = true
+            goToResultView = true
         }
-    
     }
-
-
+ 
+ 
 #Preview {
     QuizView()
 }
